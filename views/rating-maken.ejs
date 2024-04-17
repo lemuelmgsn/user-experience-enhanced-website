@@ -1,0 +1,42 @@
+<%- include('./fav-lijst') %>
+
+
+<section class="rating-section">
+    <form method="POST"></form>
+
+
+<a href="/fav-lijst">Terug</a>
+
+<h2>Beoordeling:</h2>
+
+<ul>
+    <li>Keuken</li>
+    <li>Tuin</li>
+    <li>Ligging</li>
+
+    <li>Badkamer</li>
+    <li>Prijs</li>
+    <li>Oppervlakte</li>
+</ul>
+
+
+<article class="bericht-article">
+    <label>Comments: 
+      <textarea required name="bericht" placeholder="Typ hier..."></textarea>
+    </label>  
+
+      <h2>Mijn notitie:</h2>
+    <ul>
+      <!-- <% messages.forEach(message => { %> -->
+        <li><p><%= message %></p></li>
+        <!-- <% }) %> -->
+    </ul>
+   </article>
+
+<form method="get" action="/rating-maken">
+<!-- <form method="post" action="/rating-maken"> -->
+  <button type="submit" class="verzend-btn">Verzenden</button>
+</form>
+</section>
+
+<%- include('./partials/foot') %>
