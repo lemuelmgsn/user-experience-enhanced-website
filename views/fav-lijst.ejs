@@ -24,6 +24,7 @@
             <div class="content">
                 <h2 class="h2-link"><a href="/detail/<%= house.id %>" class="house-link"><%= house.street %> <%= house.house_nr %> <%= house.nr_addition %></a></h2>
                 <p><%= house.postal_code %>, <%= house.city %></p> 
+                <br>
                 <p class="price"> €<%= house.price %></p> 
                 <p><%= house.agent %></p> 
                 <ul class="content-ul">
@@ -59,7 +60,6 @@
             <div class="beoordelingen">
                 <p>Beoordelingen van: </p>
                 <br>
-
                 <ul>
                     <li><%- include('./partials/ster-rating-persoon', {type: 'persoon-1'}) %></li>
                     <li> <%- include('./partials/ster-rating-persoon', {type: 'persoon-2'}) %></li>
@@ -67,7 +67,6 @@
                     <li><%- include('./partials/ster-rating-persoon', {type: 'persoon-4'}) %></li>
                 </ul>
             </div>
-
 
         </article>
    <% }); %>
