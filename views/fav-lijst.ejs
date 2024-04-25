@@ -12,20 +12,31 @@
             <option>Plaats</option>
         </select>
     </form>
-
+    
 <section class="house-template">    
-    <% data.forEach(house => { %>
+    <% houses.forEach(house => { %>
         <article class="grid-container">
 
             <div class="image">
-                <p><img class="house-image" src="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>" alt="image house"></p> 
+                <picture>
+                    <source srcset="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>.avif" type="image/avif"> 
+
+                    <source srcset="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>.webp" type="image/webp"> 
+
+                    <!-- <p><img class="house-image" src="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>" alt="image house"></p>  -->
+                    <img class="house-image" src="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>" alt="image house"> 
+                </picture>
+
+
+                
             </div>
 
             <div class="content">
                 <h2 class="h2-link"><a href="/detail/<%= house.id %>" class="house-link"><%= house.street %> <%= house.house_nr %> <%= house.nr_addition %></a></h2>
                 <p><%= house.postal_code %>, <%= house.city %></p> 
-                <br>
+                <!-- <br> -->
                 <p class="price"> €<%= house.price %></p> 
+                <br>
                 <p><%= house.agent %></p> 
                 <ul class="content-ul">
                     <li>Aantal kamers: <%= house.rooms %></li>
@@ -61,11 +72,22 @@
                 <p>Beoordelingen van: </p>
                 <br>
                 <ul>
+                    <% users.forEach(user => { %>
+                        <div class="user-list">
+                            <img class="avatar-image" src="https://fdnd-agency.directus.app/assets/<%=user.avatar%>"> 
+                        <li class="user-li"><%= user.name %></li>
+                        </div>
+                    <% }); %>
+                </ul>
+
+
+
+                <!-- <ul>
                     <li><%- include('./partials/ster-rating-persoon', {type: 'persoon-1'}) %></li>
                     <li> <%- include('./partials/ster-rating-persoon', {type: 'persoon-2'}) %></li>
                     <li><%- include('./partials/ster-rating-persoon', {type: 'persoon-3'}) %></li>
                     <li><%- include('./partials/ster-rating-persoon', {type: 'persoon-4'}) %></li>
-                </ul>
+                </ul> -->
             </div>
 
         </article>

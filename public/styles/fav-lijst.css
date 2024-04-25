@@ -167,7 +167,8 @@ main{
     }
     .beoordelingen{
       justify-self: end;
-      margin-top: 7px;
+      /* margin-top: 7px; */
+      margin-top: 2em;
       overflow: scroll;
       overflow-x: hidden;
       height: 160px;
@@ -187,3 +188,17 @@ main{
       color: black;
     }
     
+    /* styling voor avatar */
+    .avatar-image{
+      height: 1.5em;
+      width: 1.5em;
+      border-radius: 90px;
+    }
+    .user-list{
+      padding: 10px;
+      display: flex;
+      gap: 3px;
+    }
+    .user-li{
+     list-style: none;
+    }

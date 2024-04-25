@@ -40,22 +40,23 @@ app.get('/', function(request, response) {
 })
 
 app.get('/fav-lijst', function(request, response) {
-    fetchJson('https://fdnd-agency.directus.app/items/f_houses').then((apiData) => {
-        response.render('fav-lijst', {data: apiData.data})
+    fetchJson('https://fdnd-agency.directus.app/items/f_houses').then((houses) => {
+      fetchJson('https://fdnd-agency.directus.app/items/f_users').then((users) => {
+        response.render('fav-lijst', {
+          houses: houses.data,
+          users: users.data
+        })
+    });
 	});
 })
 
-app.get('/fav-lijst', function(request, response) {
-  fetchJson('https://fdnd-agency.directus.app/items/f_list/10?fields=*.*.*,houses.f_houses_id.poster_image.id,houses.f_houses_id.poster_image.height,houses.f_houses_id.poster_image.width').then((apiData) => {
-      response.render('fav-lijst', {data: apiData.data})
-});
-})
+
 
 
 app.get('/detail/:id', function(request, response) {
   fetchJson('https://fdnd-agency.directus.app/items/f_houses/' + request.params.id).then((apiData) => {
       console.log(apiData)
-      response.render('detail', {data: apiData.data})
+      response.render('details', {data: apiData.data})
   });
 })
 
