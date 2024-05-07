@@ -197,6 +197,11 @@
       padding: 10px;
       display: flex;
       gap: 3px;
+      text-decoration: none;
+      color: var(--primary-black);
+    }
+    .user-list:hover{
+      color: var(--primary-blue);
     }
     .user-li{
      list-style: none;

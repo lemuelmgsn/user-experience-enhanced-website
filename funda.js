@@ -34,36 +34,48 @@ app.use(express.urlencoded({extended: true}))
 // ROUTES
 
 app.get('/', function(request, response) {
-        fetchJson('https://fdnd-agency.directus.app/items/f_list').then((apiData) => {
-            response.render('homepage', {data: apiData.data})
-        });
+  fetchJson('https://fdnd-agency.directus.app/items/f_list').then((apiData) => {
+    response.render('homepage', {data: apiData.data})
+  });
 })
 
 app.get('/fav-lijst', function(request, response) {
-    fetchJson('https://fdnd-agency.directus.app/items/f_houses').then((houses) => {
-      fetchJson('https://fdnd-agency.directus.app/items/f_users').then((users) => {
-        response.render('fav-lijst', {
-          houses: houses.data,
-          users: users.data
-        })
+  fetchJson('https://fdnd-agency.directus.app/items/f_houses').then((houses) => {
+    fetchJson('https://fdnd-agency.directus.app/items/f_users').then((users) => {
+      response.render('fav-lijst', {
+      houses: houses.data,
+      users: users.data
+      })
+    });
+	});
+})
+
+app.get('/users', function(request, response) {
+  fetchJson('https://fdnd-agency.directus.app/items/f_houses').then((houses) => {
+    fetchJson('https://fdnd-agency.directus.app/items/f_users').then((users) => {
+      response.render('users', {
+      houses: houses.data,
+      users: users.data
+      })
     });
 	});
 })
 
 
-
-
 app.get('/detail/:id', function(request, response) {
   fetchJson('https://fdnd-agency.directus.app/items/f_houses/' + request.params.id).then((apiData) => {
       console.log(apiData)
-      response.render('details', {data: apiData.data})
+      response.render('details', {
+        data: apiData.data})
   });
 })
 
 app.get('/user-ratings', function(request, response) {
   fetchJson('https://fdnd-agency.directus.app/items/f_houses').then((apiData) => {
-      response.render('user-ratings', {data: apiData.data})
-});
+      response.render('user-ratings', {
+        data: apiData.data
+      })
+  });
 })
 
 app.get('/rating-maken', function(request, response) {
@@ -72,14 +84,23 @@ app.get('/rating-maken', function(request, response) {
         data: apiData.data,
         messages: messages
       })
-});
+  });
+})
+
+app.post('/rating-maken', function(request, response) {
+  fetchJson('https://fdnd-agency.directus.app/items/f_houses').then((apiData) => {
+      response.render('rating-maken', {
+        data: apiData.data,
+        messages: messages
+      })
       messages.push(request.body.bericht)
+  });
 })
 
 app.get('/ster-rating-persoon', function(request, response) {
   fetchJson('https://fdnd-agency.directus.app/items/f_houses').then((apiData) => {
-      response.render('ster-rating-persoon')
-});
+    response.render('ster-rating-persoon')
+  });
 })
 
 // 

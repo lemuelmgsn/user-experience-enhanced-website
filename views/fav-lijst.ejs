@@ -44,7 +44,27 @@
             </div>
 
             <div class="ster">
-                <p><a href="/rating-maken" class="beoordeling-text">Notitie maken +</a></p>
+                <!-- <p><a href="/rating-maken" class="beoordeling-text">Notitie maken +</a></p> -->
+
+<p><button id="openDialog"> Notitie maken +</button>
+
+<dialog id="sampleDialog">
+  <h1>Beoordeling:</h1>
+  <ul>
+    <li>Keuken</li>
+    <li>Tuin</li>
+    <li>Ligging </li>
+    <br>
+    <li>Badkamer</li>
+    <li>Prijs</li>
+    <li>Oppervlakte</li>
+  </ul>
+  <!-- Close button inside the dialog -->
+  <button id="closeDialog">Annuleer</button>
+</dialog>
+</p>
+
+
                 <!-- <p><a href="/user-ratings" class="beoordeling-text">Notitie maken +</a></p> -->
               
                   <div class="rate">
@@ -70,10 +90,12 @@
                 <br>
                 <ul>
                     <% users.forEach(user => { %>
-                        <div class="user-list">
+                        <!-- <div class="user-list"> -->
+                        <a href="/users/<%= users.id %>" class="user-list">
                             <img class="avatar-image" src="https://fdnd-agency.directus.app/assets/<%=user.avatar%>"> 
                         <li class="user-li"><%= user.name %></li>
-                        </div>
+                        <!-- </div> -->
+                        </a>
                     <% }); %>
                 </ul>
             </div>

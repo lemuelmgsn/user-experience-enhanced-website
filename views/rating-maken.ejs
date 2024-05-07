@@ -2,8 +2,7 @@
 
 
 <section class="rating-section">
-    <form method="POST"></form>
-
+  <form method="post" action="/rating-maken">
 
 <a href="/fav-lijst">Terug</a>
 
@@ -21,7 +20,6 @@
     <li>Oppervlakte</li>
 </ul>
 
-
 <article class="bericht-article">
     <label>Comments: 
       <textarea required name="bericht" placeholder="Typ hier..."></textarea>
@@ -29,16 +27,17 @@
 
       <h2>Mijn notitie:</h2>
     <ul>
-      <!-- <% messages.forEach(message => { %> -->
+      <% messages.forEach(message => { %>
         <li><p><%= message %></p></li>
-        <!-- <% }) %> -->
+        <% }) %>
     </ul>
-   </article>
+</article>
 
-<form method="post" action="/rating-maken">
+
 <!-- <form method="post" action="/rating-maken"> -->
   <button type="submit" class="verzend-btn">Verzenden</button>
-</form>
+
 </section>
+</form>
 
 <%- include('./partials/foot') %>
