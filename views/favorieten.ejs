@@ -1,0 +1,14 @@
+<%- include('./partials/head') %>
+
+<h1>Favorieten lijsten</h1>
+
+<section class="lijsten">
+    <% data.forEach(list => { %>
+        <article class="list-items">
+            <ul class="lijsten-ul">
+                <li class="lijsten-li"><a href="/lijst/<%= list.id %>"><h1><%= list.title %></h1></a></li>
+                <li class="lijsten-li"><p><%= list.description %></li></p>     
+            </ul>
+        </article>
+   <% }); %>
+</section>

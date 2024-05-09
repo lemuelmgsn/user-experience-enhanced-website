@@ -1,8 +1,11 @@
 <%- include('./partials/head') %>
 
 <main>
-
-    <h1 class="fav-h1">Bewaarde huizen</h1>
+    <section class="lijst-titel">
+        <h1 class="fav-h1"><%= list.title %></h1>
+        <h2 class="fav-h2">"<%= list.description %>"</h2>
+    </section>
+ 
     <form>
         <p>Filter op:</p>
         <select>
@@ -14,31 +17,35 @@
     </form>
     
 <section class="house-template">    
-    <% houses.forEach(house => { %>
+    <% list.houses.forEach(house => { console.log(house.f_houses_id.poster_image)%>
         <article class="grid-container">
 
             <div class="image">
-                <picture>
+                <!-- <picture>
                     <source srcset="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>?format=avif" type="image/avif"> 
 
                     <source srcset="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>?format=webp" type="image/webp"> 
 
-                    <!-- <p><img class="house-image" src="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>" alt="image house"></p>  -->
                     <img class="house-image" src="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>" alt="image house"> 
-                </picture>
+                </picture> -->
+                <picture>
+                    <source srcset="https://fdnd-agency.directus.app/assets/<%= house.f_houses_id.poster_image.id %>?format=avif" type="image/avif">
+                    <source srcset="https://fdnd-agency.directus.app/assets/<%= house.f_houses_id.poster_image.id %>?format=webp" type="image/webp">
+                    <img class="image-size" src="https://fdnd-agency.directus.app/assets/<%= house.f_houses_id.poster_image.id %>" loading="lazy">
+                  </picture>
             </div>
 
             <div class="content">
-                <h2 class="h2-link"><a href="/detail/<%= house.id %>" class="house-link"><%= house.street %> <%= house.house_nr %> <%= house.nr_addition %></a></h2>
-                <p><%= house.postal_code %>, <%= house.city %></p> 
-                <!-- <br> -->
-                <p class="price"> €<%= house.price %></p> 
+                <h3><a href="/detail/<%= house.id %>" class="house-link"><%= house.f_houses_id.street %> <%= house.f_houses_id.house_nr %> <%= house.f_houses_id.house_nr_addition %></a></h3>
+                    <p><%= house.f_houses_id.postal_code %>, <%= house.f_houses_id.city %></p> 
+
+                    <p class="price"> €<%= house.f_houses_id.price %></p> 
                 <br>
-                <p><%= house.agent %></p> 
+                    <p><%= house.f_houses_id.agent %></p> 
                 <ul class="content-ul">
-                    <li>Aantal kamers: <%= house.rooms %></li>
-                    <li><%= house.m2 %> m2</li>
-                    <li><%= house.m2_garden %> tuin m2</li>
+                    <li>Aantal kamers: <%= house.f_houses_id.rooms %></li>
+                    <li><%= house.f_houses_id.m2 %> m2</li>
+                    <li><%= house.f_houses_id.m2_garden %> tuin m2</li>
                 </ul>
                 <br>
             </div>
@@ -46,9 +53,9 @@
             <div class="ster">
                 <!-- <p><a href="/rating-maken" class="beoordeling-text">Notitie maken +</a></p> -->
 
-<p><button id="openDialog"> Notitie maken +</button>
+<button id="openDialog"> Notitie maken +</button>
 
-<dialog id="sampleDialog">
+<dialog id="Dialog">
   <h1>Beoordeling:</h1>
   <ul>
     <li>Keuken</li>
@@ -59,46 +66,32 @@
     <li>Prijs</li>
     <li>Oppervlakte</li>
   </ul>
-  <!-- Close button inside the dialog -->
+
   <button id="closeDialog">Annuleer</button>
 </dialog>
-</p>
 
 
-                <!-- <p><a href="/user-ratings" class="beoordeling-text">Notitie maken +</a></p> -->
-              
-                  <div class="rate">
-                    <input type="radio" id="star5" name="rate" value="5" />
-                    <label for="star5" title="text">5 stars</label>
-                    <input type="radio" id="star4" name="rate" value="4" />
-                    <label for="star4" title="text">4 stars</label>
-                    <input type="radio" id="star3" name="rate" value="3" />
-                    <label for="star3" title="text">3 stars</label>
-                    <input type="radio" id="star2" name="rate" value="2" />
-                    <label for="star2" title="text">2 stars</label>
-                    <input type="radio" id="star1" name="rate" value="1" />
-                    <label for="star1" title="text">1 star</label>
-                    </div>
+<%- include('./partials/ster-notitie', {type: 'Persoon-1'}) %>
             </div>
 
-            <div class="verwijderen">
-                <button>Verwijderen  &#x2715;</button>
-            </div>
+<div class="verwijderen">
+    <button>Verwijderen  &#x2715;</button>
+</div>
 
-            <div class="beoordelingen">
-                <p>Beoordelingen van: </p>
-                <br>
-                <ul>
-                    <% users.forEach(user => { %>
-                        <!-- <div class="user-list"> -->
-                        <a href="/users/<%= users.id %>" class="user-list">
-                            <img class="avatar-image" src="https://fdnd-agency.directus.app/assets/<%=user.avatar%>"> 
-                        <li class="user-li"><%= user.name %></li>
+<div class="beoordelingen">
+    <p>Beoordelingen van: </p>
+    <br>
+        <ul>
+            <% users.forEach(user => { %>
+            <!-- <div class="user-list"> -->
+            <a href="/users/<%= users.id %>" class="user-list">
+                <img class="avatar-image" src="https://fdnd-agency.directus.app/assets/<%=user.avatar%>"> 
+                    <li class="user-li"><%= user.name %></li>
                         <!-- </div> -->
-                        </a>
-                    <% }); %>
-                </ul>
-            </div>
+            </a>
+            <% }); %>
+        </ul>
+</div>
 
         </article>
    <% }); %>

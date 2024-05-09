@@ -39,18 +39,25 @@ app.get('/', function(request, response) {
   });
 })
 
-app.get('/fav-lijst', function(request, response) {
-  fetchJson('https://fdnd-agency.directus.app/items/f_houses').then((houses) => {
-    fetchJson('https://fdnd-agency.directus.app/items/f_users').then((users) => {
-      response.render('fav-lijst', {
-      houses: houses.data,
-      users: users.data
-      })
-    });
-	});
+app.get('/favorieten', function(request, response) {
+  fetchJson('https://fdnd-agency.directus.app/items/f_list').then((apiData) => {
+    response.render('favorieten', {data: apiData.data})
+  });
 })
 
-app.get('/users', function(request, response) {
+
+app.get('/lijst/:id', function(request, response) {
+    fetchJson('https://fdnd-agency.directus.app/items/f_users').then((users) => {
+      fetchJson('https://fdnd-agency.directus.app/items/f_list/' + request.params.id + '?fields=*.*.*,houses.f_houses_id.poster_image.id,houses.f_houses_id.poster_image.width,houses.f_houses_id.poster_image.height').then((lists) => { 
+      response.render('fav-lijst.ejs', {
+        list: lists.data,
+        users: users.data
+      })  
+     })
+    });
+	});
+
+app.get('/users/:id', function(request, response) {
   fetchJson('https://fdnd-agency.directus.app/items/f_houses').then((houses) => {
     fetchJson('https://fdnd-agency.directus.app/items/f_users').then((users) => {
       response.render('users', {

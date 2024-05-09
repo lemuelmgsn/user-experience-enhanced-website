@@ -10,7 +10,6 @@
     z-index: 999;
     top: 20%;
     left: 35%;
-    /* styling */
     margin: 1em;
     padding: 1em;
     background-color: #fff;
@@ -18,4 +17,7 @@
     border-radius: 5px;
     height: 600px;
     width: 500px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
