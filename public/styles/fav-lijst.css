@@ -13,6 +13,7 @@
   h2{
     font-size: 1em;
     color: var(--primary-black);
+    width: 35em;
   }
     .logo{
      scale: .1;
