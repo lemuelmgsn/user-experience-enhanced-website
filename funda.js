@@ -39,12 +39,22 @@ app.get('/', function(request, response) {
   });
 })
 
-app.get('/favorieten', function(request, response) {
-  fetchJson('https://fdnd-agency.directus.app/items/f_list').then((apiData) => {
-    response.render('favorieten', {data: apiData.data})
-  });
-})
+// app.get('/favorieten', function(request, response) {
+//   fetchJson('https://fdnd-agency.directus.app/items/f_list').then((apiData) => {
+//     response.render('favorieten', {data: apiData.data})
+//   });
+// })
 
+app.get('/favorieten', function(request, response) {
+  fetchJson('https://fdnd-agency.directus.app/items/f_list').then((lists) => {
+    fetchJson('https://fdnd-agency.directus.app/items/f_users').then((users) => {
+      response.render('favorieten', {
+      lists: lists.data,
+      users: users.data
+      })
+    });
+	});
+})
 
 app.get('/lijst/:id', function(request, response) {
     fetchJson('https://fdnd-agency.directus.app/items/f_users').then((users) => {

@@ -3,7 +3,7 @@
 <h1>Favorieten lijsten</h1>
 
 <section class="lijsten">
-    <% data.forEach(list => { %>
+    <% lists.forEach(list => { %>
         <!-- <article class="list-items">
             <ul class="lijsten-ul">
                 <li class="lijsten-li"><a href="/lijst/<%= list.id %>"><h1><%= list.title %></h1></a></li>
@@ -12,8 +12,11 @@
         </article> -->
         <a class="lijst-items" href="/lijst/<%= list.id %>">
             <ul class="lijsten-ul">
-                <li class="lijsten-li"><h1><%= list.title %></h1></li>
-                <li class="lijsten-li"><p><%= list.description %></li></p>     
+                    <li class="lijsten-li"><img class="avatar-image" src="https://fdnd-agency.directus.app/assets/<%=users.avatar%>"></li>
+                    <li class="lijsten-li"><h1><%= list.title %></h1></li>
+                    <li class="lijsten-li"><p><%= list.description %></li>
+                    <br>
+                    <li class="lijsten-li"> 4 huizen</li>        
             </ul>
         </a>
    <% }); %>
