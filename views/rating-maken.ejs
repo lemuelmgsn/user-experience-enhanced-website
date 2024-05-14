@@ -9,33 +9,19 @@
 <h2>Beoordeling:</h2>
 
 <ul>
-    <li>Keuken</li>
-    <li>Tuin</li>
-    <li>Ligging</li>
-</ul>
+    <li>Keuken <%- include('./partials/ster-notitie', {type: 'Keuken'}) %></li>
+    <li>Tuin <%- include('./partials/ster-notitie', {type: 'Tuin'}) %></li>
+    <li>Ligging <%- include('./partials/ster-notitie', {type: 'Ligging'}) %>
 
 <ul>
-    <li>Badkamer</li>
-    <li>Prijs</li>
-    <li>Oppervlakte</li>
+    <li>Badkamer <%- include('./partials/ster-notitie', {type: 'Badkamer'}) %></li>
+    <li>Prijs <%- include('./partials/ster-notitie', {type: 'Prijs'}) %></li>
+    <li>Oppervlakte <%- include('./partials/ster-notitie', {type: 'Oppervlakte'}) %></li>
 </ul>
 
-<article class="bericht-article">
-    <label>Comments: 
-      <textarea required name="bericht" placeholder="Typ hier..."></textarea>
-    </label>  
-
-      <h2>Mijn notitie:</h2>
-    <ul>
-      <% messages.forEach(message => { %>
-        <li><p><%= message %></p></li>
-        <% }) %>
-    </ul>
-</article>
 
 
-<!-- <form method="post" action="/rating-maken"> -->
-  <button type="submit" class="verzend-btn">Verzenden</button>
+  <button value="Rate" type="submit" class="verzend-btn">Verzenden</button>
 
 </section>
 </form>
